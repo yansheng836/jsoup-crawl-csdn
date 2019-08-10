@@ -21,6 +21,17 @@ import xyz.yansheng.entity.Blog;
  * @version v1.0 
  */
 public class BlogUtilTest {
+	
+	// 定义常量字符串
+	/**  
+	 * @Fields PERSONAL_HOME_PAGE : 个人主页网址：personal-home-page，如https://me.csdn.net/username
+	 */
+	public static final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
+
+	/**  
+	 * @Fields BLOG_HOME : 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
+	 */
+	public static final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
 
 	/**
 	 * @Title main
@@ -30,10 +41,6 @@ public class BlogUtilTest {
 	 * @Description 测试BlogUtilTest
 	 */
 	public static void main(String[] args) {
-		// 个人主页网址：personal-home-page，如https://me.csdn.net/username
-		final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
-		// 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
-		final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
 
 		// 1.获取博客数量
 		// test method: int getBlogCounter(String personalHomePage)
@@ -48,9 +55,9 @@ public class BlogUtilTest {
 		// 3.获取博客列表
 		// test method: ArrayList<Blog> getBlogs(int blogListPage, String blogHome)
 		ArrayList<Blog> blogs = BlogUtil.getBlogs(blogListPage, BLOG_HOME);
-//		for (int i = 0, size = blogs.size(); i < size; i++) {
-//			System.out.println(blogs.get(i).toString());
-//		}
+		//		for (int i = 0, size = blogs.size(); i < size; i++) {
+		//			System.out.println(blogs.get(i).toString());
+		//		}
 
 		// 4.获取博客里面的图片的URL
 		// test method: ArrayList<String> getBlogPic(String blogUrl)

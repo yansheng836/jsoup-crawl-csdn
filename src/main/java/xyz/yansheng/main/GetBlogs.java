@@ -1,12 +1,12 @@
 /**
  * @Title GetBlogs.java
- * @Package xyz.yansheng.jsoup_crawl_csdn
+ * @Package xyz.yansheng.main
  * @Description TODO
  * @author yansheng
  * @date 2019-08-10 21:16:30
  * @version v1.0
  */
-package xyz.yansheng.jsoup_crawl_csdn;
+package xyz.yansheng.main;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,17 @@ import xyz.yansheng.utility.BlogUtil;
  */
 public class GetBlogs {
 
+	// 定义常量字符串
+	/**  
+	 * @Fields PERSONAL_HOME_PAGE : 个人主页网址：personal-home-page，如https://me.csdn.net/username
+	 */
+	public static final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
+
+	/**  
+	 * @Fields BLOG_HOME : 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
+	 */
+	public static final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
+
 	/**
 	 * @Title main
 	 * @author yansheng
@@ -31,10 +42,6 @@ public class GetBlogs {
 	 * @Description 获取博客列表信息
 	 */
 	public static void main(String[] args) {
-		// 个人主页网址：personal-home-page，如https://me.csdn.net/username
-		final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
-		// 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
-		final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
 
 		// 1.获取博客数量
 		int blogCount = BlogUtil.getBlogCounter(PERSONAL_HOME_PAGE);

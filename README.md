@@ -53,7 +53,7 @@ jdk1.8+，maven3.0+，myeclipse2017
 
 2. 以maven形式导入(my)eclipse。
 
-3. 运行`\jsoup-crawl-csdn\src\main\java\xyz\yansheng\jsoup_crawl_csdn`下面的测试程序。
+3. 运行`\jsoup-crawl-csdn\src\main\java\xyz\yansheng\main`下面的测试程序。
 
    4 . 或者按需开发自己的程序，例如：获取文章信息……
 

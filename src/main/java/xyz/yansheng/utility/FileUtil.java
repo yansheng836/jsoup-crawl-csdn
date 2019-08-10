@@ -17,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.jsoup.select.Elements;
 
 /**
  * <p>Title: </p>
@@ -97,7 +96,7 @@ public class FileUtil {
 				return;
 			}
 		} catch (MalformedURLException e2) {
-			System.err.println("图片链接(" + picUrl + ")中不含有网络协议，解析链接失败！");
+			System.err.println("图片链接(" + picUrl + ")中不含有合法的网络协议或者无法解析该字符串！");
 			e2.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();

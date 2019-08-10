@@ -1,12 +1,12 @@
 /**
  * @Title GetBlogConut.java
- * @Package xyz.yansheng.jsoup_crawl_csdn
+ * @Package xyz.yansheng.main
  * @Description TODO
  * @author yansheng
  * @date 2019-08-10 21:14:42
  * @version v1.0
  */
-package xyz.yansheng.jsoup_crawl_csdn;
+package xyz.yansheng.main;
 
 import xyz.yansheng.utility.BlogUtil;
 

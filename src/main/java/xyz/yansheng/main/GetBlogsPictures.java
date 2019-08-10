@@ -1,12 +1,12 @@
 /**
  * @Title GetBlogsPictures.java
- * @Package xyz.yansheng.jsoup_crawl_csdn
+ * @Package xyz.yansheng.main
  * @Description TODO
  * @author yansheng
  * @date 2019-08-10 22:24:42
  * @version v1.0
  */
-package xyz.yansheng.jsoup_crawl_csdn;
+package xyz.yansheng.main;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,6 +31,17 @@ import xyz.yansheng.utility.FileUtil;
  */
 public class GetBlogsPictures {
 
+	// 定义常量字符串
+	/**  
+	 * @Fields PERSONAL_HOME_PAGE : 个人主页网址：personal-home-page，如https://me.csdn.net/username
+	 */
+	public static final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
+	
+	/**  
+	 * @Fields BLOG_HOME : 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
+	 */
+	public static final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
+
 	/**
 	 * @Title main
 	 * @author yansheng
@@ -39,10 +50,6 @@ public class GetBlogsPictures {
 	 * @Description TODO
 	 */
 	public static void main(String[] args) {
-		// 个人主页网址：personal-home-page，如https://me.csdn.net/username
-		final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
-		// 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
-		final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
 
 		// 1.获取博客数量
 		int blogCount = BlogUtil.getBlogCounter(PERSONAL_HOME_PAGE);
@@ -59,7 +66,7 @@ public class GetBlogsPictures {
 		for (int i = 0, size = blogs.size(); i < 1; i++) {
 			Blog blog = blogs.get(i);
 			// 创建文件夹，以博客的创建时间为文件夹名
-			String dirPath = "./" + blog.getCreateTime().substring(0,10)+"/";
+			String dirPath = "./" + blog.getCreateTime().substring(0, 10) + "/";
 			FileUtil.mkdir(dirPath);
 
 			picUrls = BlogUtil.getBlogPictures(blog.getUrl());

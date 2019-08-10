@@ -10,7 +10,6 @@ package xyz.yansheng.utility;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -41,22 +40,19 @@ public class BlogUtil {
 	 */
 	public static int getBlogCounter(String personalHomePage) {
 
-		// 1. 获取文档对象
+		// 1.获取文档对象
 		Document doc = null;
 		try {
 			doc = Jsoup.connect(personalHomePage).get();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//System.out.println(doc);
 
-		// 2. 查找包含博客数量的元素
+		// 2.查找包含博客数量的元素
 		Element countElement = doc.select("span.count").first();
-		//System.out.println("countElement:" + countElement);
 
-		// 3. 取出值
+		// 3.取出元素包含的文本（字符串），这里为博客数量
 		String blogCount = countElement.text();
-		//System.out.println("blogCount:" + blogCount);
 
 		return Integer.parseInt(blogCount);
 	}
