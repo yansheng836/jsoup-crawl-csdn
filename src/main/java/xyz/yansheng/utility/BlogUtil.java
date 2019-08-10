@@ -97,7 +97,7 @@ public class BlogUtil {
 
 		// 用于存放博客列表，设置初始容量为：页面*20
 		ArrayList<Blog> blogs = new ArrayList<Blog>(blogListPage * 20);
-		
+
 		// 定义变量：博客列表页的网址
 		String blogListUrl = null;
 		for (int i = 1, pageNum = blogListPage + 1; i < pageNum; i++) {
@@ -147,12 +147,53 @@ public class BlogUtil {
 				blog.setUrl(blogUrl);
 				blog.setCreateTime(blogDate);
 				blog.setTitle(blogTitle);
-				
+
 				blogs.add(blog);
 			}
 		}
 
 		return blogs;
+	}
+
+	/**
+	 * @Title getBlogPictures
+	 * @author yansheng
+	 * @version v1.0
+	 * @date 2019-08-10 22:22:34
+	 * @Description 获取博客中的图片的链接
+	 * @param blogUrl 博客的网址
+	 * @return   
+	 * ArrayList<String> 博客中的图片的链接
+	 */
+	public static ArrayList<String> getBlogPictures(String blogUrl) {
+
+		ArrayList<String> picUrls = new ArrayList<String>();
+		
+		// 1. 获取文档对象
+		Document doc = null;
+		try {
+			doc = Jsoup.connect(blogUrl).get();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		System.out.println(doc);
+
+		// 2. 查找包含博客列表的元素
+		Elements articleList = doc.select("img.has");
+		// System.out.println("articleList:" + articleList);
+		for (Element element : articleList) {
+			String picUrl1 = element.attr("src");
+			// 对特殊字符串（如下）进行裁剪
+			// https://img-blog.csdnimg.cn/20190729002407657.png?x-oss-process=image/watermark,
+
+			int index = picUrl1.indexOf('?');
+			if (index != -1) {
+				picUrl1 = picUrl1.substring(0,index);
+			}
+			picUrls.add(picUrl1);
+		}
+		
+		return picUrls;
 	}
 
 }
