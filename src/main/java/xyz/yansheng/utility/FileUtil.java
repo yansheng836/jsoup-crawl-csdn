@@ -36,7 +36,7 @@ public class FileUtil {
 	 * @Description 创建文件夹
 	 * @param dirPath
 	 * @return   
-	 * int 
+	 * int 文件夹存在返回0，文件夹创建成功过返回1，文件夹创建失败过返回-1
 	 */
 	public static int mkdir(String dirPath) {
 
@@ -112,7 +112,7 @@ public class FileUtil {
 				outputStream.write(b, 0, n);
 			}
 			outputStream.flush();
-			System.out.println("下载图片:" + outPic + "成功！");
+			System.out.println(" --下载图片:" + outPic + " 成功！");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
