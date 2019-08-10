@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.jsoup.select.Elements;
@@ -58,15 +59,16 @@ public class FileUtil {
 		return reslut;
 	}
 
+	/**
+	 * @Title downloadPic
+	 * @author yansheng
+	 * @version v1.1
+	 * @date 2019-08-11 00:54:26
+	 * @Description 下载图片
+	 * @param picUrl 图片链接
+	 * @param dirPath 图片的保存目录
+	 */
 	public static void downloadPic(String picUrl, String dirPath) {
-		// String path = "";
-		URL url = null;
-
-		// 创建输入输出流
-		InputStream inputStream = null;
-		OutputStream outputStream = null;
-		// 建立一个网络链接
-		HttpURLConnection con = null;
 
 		// 构造输出文件名（图片名）：路径+链接中的图片名
 		// 对图片名进行裁剪：取得最后一个/后面的内容
@@ -75,11 +77,36 @@ public class FileUtil {
 		String outPic = dirPath + picUrl.substring(index + 1, picUrl.length());
 		File outFile = new File(outPic);
 
+		// 创建URL对象，将字符串解析为URL
+		URL url = null;
+		// 建立一个网络链接对象
+		HttpURLConnection con = null;
 		try {
 			url = new URL(picUrl);
 			con = (HttpURLConnection) url.openConnection();
-			inputStream = con.getInputStream();
-			outputStream = new FileOutputStream(outFile);
+			//设置请求方式
+			con.setRequestMethod("GET");
+			//连接
+			con.connect();
+			//得到响应码
+			int responseCode = con.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) {
+				// 响应成功，可以建立连接
+			} else {
+				System.err.println("图片链接(" + picUrl + ")无效！");
+				return;
+			}
+		} catch (MalformedURLException e2) {
+			System.err.println("图片链接(" + picUrl + ")中不含有网络协议，解析链接失败！");
+			e2.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// 利用jdk1.7的新特性 ：try(resource){……} catch{……}，自动释放资源
+		// 1.创建输入输出流  2.建立一个网络链接
+		try (InputStream inputStream = con.getInputStream();
+				OutputStream outputStream = new FileOutputStream(outFile);) {
 			int n = -1;
 			byte b[] = new byte[1024];
 			while ((n = inputStream.read(b)) != -1) {
@@ -89,17 +116,6 @@ public class FileUtil {
 			System.out.println("下载图片:" + outPic + "成功！");
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				inputStream.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			try {
-				outputStream.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
