@@ -17,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
 /**
  * <p>Title: </p>
  * <p>Description: </p>
@@ -45,14 +44,14 @@ public class FileUtil {
 		File dirFile = new File(dirPath);
 		if (!dirFile.exists()) {
 			if (dirFile.mkdir()) {
-				System.out.println("创建文件夹：" + dirPath + "成功");
+				System.out.println("创建文件夹：" + dirPath + " 成功");
 				reslut = 1;
 			} else {
-				System.out.println("创建文件夹：" + dirPath + "失败");
+				System.err.println("创建文件夹：" + dirPath + " 失败");
 				reslut = -1;
 			}
 		} else {
-			System.out.println("文件夹：" + dirPath + "已存在");
+			System.out.println("文件夹：" + dirPath + " 已存在");
 			reslut = 0;
 		}
 		return reslut;
@@ -73,8 +72,9 @@ public class FileUtil {
 		// 对图片名进行裁剪：取得最后一个/后面的内容
 		// http://patiencecats.com/ueditor/php/upload/image/20180312/1520829763554937.jpg
 		int index = picUrl.lastIndexOf('/');
-		String outPic = dirPath + picUrl.substring(index + 1, picUrl.length());
-		File outFile = new File(outPic);
+
+		String outPicPath = dirPath + picUrl.substring(index + 1, picUrl.length());
+		File outFile = new File(outPicPath);
 
 		// 创建URL对象，将字符串解析为URL
 		URL url = null;
@@ -112,10 +112,12 @@ public class FileUtil {
 				outputStream.write(b, 0, n);
 			}
 			outputStream.flush();
-			System.out.println(" --下载图片:" + outPic + " 成功！");
+			System.out.println(" --下载图片:" + picUrl + " 成功！保存位置为：" + outPicPath);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
+	
 
 }

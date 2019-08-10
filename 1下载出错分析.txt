@@ -1,0 +1,19 @@
+## 待修复bug
+1. 当标题中含有`/`时，创建文件夹会失败，比如：`2019-05-26-java.lang.NoClassDefFoundError: org/junit/platform/launcher/core/LauncherFactory`
+
+同时，如果穿件文件夹失败，应该continue，不在继续下载图片，因为路径错误，会没有意义！
+
+2. 创建`2019-07-25-git 错误 fatal: Not a valid object name: 'master'.//失败`
+3. 2019-05-04-git报错“fatal: refusing to merge unrelated histories”处理方案//失败
+4. 2019-01-06-手把手教你如何安装Pycharm——靠谱的Pycharm安装详细教程//成功
+
+ --下载图片:https://ss.csdn.net/p 成功！保存位置为：E://2CSDN//2019-01-06-手把手教你如何安装Pycharm——靠谱的Pycharm安装详细教程//p
+ --下载图片:https://ss.csdn.net/p 成功！保存位置为：E://2CSDN//2019-01-06-手把手教你如何安装Pycharm——靠谱的Pycharm安装详细教程//p
+ --下载图片:https://ss.csdn.net/p 成功！保存位置为：E://2CSDN//2019-01-06-手把手教你如何安装Pycharm——靠谱的Pycharm安装详细教程//p
+
+<https://ss.csdn.net/p?http://s1.51cto.com/images/20180513/1526178919312040.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=>
+尝试：当超链接有两个问号时取第二个分号内容
+
+
+5. 第88篇博客-图片创建文件夹：E://2CSDN//2018-12-01-解决Eclipse和myeclipse在进行 html,jsp等 页面编辑时，自动格式化变丑的问题//成功
+图片链接(http://images.cnitblog.com/blog/534652/201501/111641302036764.png)无效！
