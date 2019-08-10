@@ -91,62 +91,68 @@ public class BlogUtil {
 	 */
 	public static ArrayList<Blog> getBlogs(int blogListPage, String blogHome) {
 
-        // 拼接博客列表页网址 
-        // 如列表第二页为：https://blog.csdn.net/weixin_41287260/article/list/2
-        final String ARTICLE_LIST = "/article/list/";
+		// 拼接博客列表页网址 
+		// 如列表第二页为：https://blog.csdn.net/weixin_41287260/article/list/2
+		final String ARTICLE_LIST = "/article/list/";
 
-        String blogListUrl = null;
-        // 用于存放博客列表，设置初始容量为：页面*20
-        ArrayList<Blog> blogs = new ArrayList<Blog>(blogListPage * 20);
-        for (int i = 1,pageNum = blogListPage+1; i < pageNum; i++) {
-            blogListUrl = blogHome + ARTICLE_LIST + Integer.toString(i);
+		// 用于存放博客列表，设置初始容量为：页面*20
+		ArrayList<Blog> blogs = new ArrayList<Blog>(blogListPage * 20);
+		
+		// 定义变量：博客列表页的网址
+		String blogListUrl = null;
+		for (int i = 1, pageNum = blogListPage + 1; i < pageNum; i++) {
+			// 拼接网址
+			blogListUrl = blogHome + ARTICLE_LIST + Integer.toString(i);
 
-            // 1. 获取文档对象
-            Document doc = null;
-            try {
-                doc = Jsoup.connect(blogListUrl).get();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //System.out.println(doc);
+			// 1. 获取文档对象
+			Document doc = null;
+			try {
+				doc = Jsoup.connect(blogListUrl).get();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			//System.out.println(doc);
 
-            // 2. 查找包含博客数量的元素
-            Element articleList = doc.select("div.article-list").first();
-            // System.out.println("articleList:" + articleList);
+			// 2. 查找包含博客列表的元素
+			Element articleList = doc.select("div.article-list").first();
+			// System.out.println("articleList:" + articleList);
 
-            //          Elements blogInfo = doc.select("h4>a");
-            Elements blogInfo = articleList.select("div.article-item-box.csdn-tracking-statistics");
-            //System.out.println("blogInfo:" + blogInfo);
+			// 3. 查找每篇博客的元素
+			// 注意这里因为class里面有空格，class="article-item-box csdn-tracking-statistics",
+			// 相当于是两个class
+			Elements blogInfo = articleList.select("div.article-item-box.csdn-tracking-statistics");
+			//System.out.println("blogInfo:" + blogInfo);
 
-            for (int j = 0, size = blogInfo.size(); j < size; j++) {
-                // 如果不含blogHome（https://blog.csdn.net/weixin_41287260），则移除
-                // 排除乱入的第一个网址 :https://blog.csdn.net/yoyo_liyy/article/details/82762601
-                if (j == 0) {
-                    // blogInfo.remove(j);
-                    continue;
-                }
-                // 取出博客信息
-                Element h4 = blogInfo.get(j).select("h4>a").first();
-                String blogUrl = h4.attr("href");
-                //System.out.println("blogUrl:" + blogUrl);
+			for (int j = 0, size = blogInfo.size(); j < size; j++) {
+				// 如果不含blogHome（https://blog.csdn.net/weixin_41287260），则移除
+				// 排除乱入的第一个网址 :https://blog.csdn.net/yoyo_liyy/article/details/82762601
+				if (j == 0) {
+					// blogInfo.remove(j);
+					continue;
+				}
+				// 取出博客信息
+				Element h4 = blogInfo.get(j).select("h4>a").first();
+				String blogUrl = h4.attr("href");
+				//System.out.println("blogUrl:" + blogUrl);
 
-                // 裁剪博客标题，前面有：原，空格
-                String blogTitle = h4.text().substring(2);
-                //System.out.println("blogTitle:" + blogTitle);
+				// 裁剪博客标题，前面有：原，空格
+				String blogTitle = h4.text().substring(2);
+				//System.out.println("blogTitle:" + blogTitle);
 
-                Element date = blogInfo.get(j).select("span.date").first();
-                String blogDate = date.text();
-                //System.out.println("blogDate:" + blogDate);
+				Element date = blogInfo.get(j).select("span.date").first();
+				String blogDate = date.text();
+				//System.out.println("blogDate:" + blogDate);
 
-                Blog blog = new Blog();
-                blog.setUrl(blogUrl);
-                blog.setTitle(blogTitle);
-                blog.setCreateTime(blogDate);
-                blogs.add(blog);
-            }
-        }
+				Blog blog = new Blog();
+				blog.setUrl(blogUrl);
+				blog.setCreateTime(blogDate);
+				blog.setTitle(blogTitle);
+				
+				blogs.add(blog);
+			}
+		}
 
-        return blogs;
-    }
+		return blogs;
+	}
 
 }

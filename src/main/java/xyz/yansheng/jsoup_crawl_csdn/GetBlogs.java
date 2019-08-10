@@ -1,33 +1,34 @@
 /**
- * @Title BlogUtilTest.java
- * @Package xyz.yansheng.utility
+ * @Title GetBlogs.java
+ * @Package xyz.yansheng.jsoup_crawl_csdn
  * @Description TODO
  * @author yansheng
- * @date 2019-08-10 18:39:37
+ * @date 2019-08-10 21:16:30
  * @version v1.0
  */
-package xyz.yansheng.utility;
+package xyz.yansheng.jsoup_crawl_csdn;
 
 import java.util.ArrayList;
 
 import xyz.yansheng.entity.Blog;
+import xyz.yansheng.utility.BlogUtil;
 
 /**
  * <p>Title: </p>
  * <p>Description: </p>
  * <p>Company: </p>
  * @author yansheng
- * @date 2019-08-10 18:39:37
+ * @date 2019-08-10 21:16:30
  * @version v1.0 
  */
-public class BlogUtilTest {
+public class GetBlogs {
 
 	/**
 	 * @Title main
 	 * @author yansheng
 	 * @version v1.0
-	 * @date 2019-08-10 18:39:37
-	 * @Description 测试BlogUtilTest
+	 * @date 2019-08-10 21:16:30
+	 * @Description 获取博客列表信息
 	 */
 	public static void main(String[] args) {
 		// 个人主页网址：personal-home-page，如https://me.csdn.net/username
@@ -36,21 +37,17 @@ public class BlogUtilTest {
 		final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
 
 		// 1.获取博客数量
-		// test method: int getBlogCounter(String personalHomePage)
 		int blogCount = BlogUtil.getBlogCounter(PERSONAL_HOME_PAGE);
-		System.out.println("blogCount:" + blogCount);
 
 		// 2.获取博客列表页数
-		// test method: int getBlogListPage(int blogCount)
 		int blogListPage = BlogUtil.getBlogListPage(blogCount);
-		System.out.println("blogListPage:" + blogListPage);
 
 		// 3.获取博客列表
-		// test method: ArrayList<Blog> getBlogs(int blogListPage, String blogHome)
 		ArrayList<Blog> blogs = BlogUtil.getBlogs(blogListPage, BLOG_HOME);
 		for (int i = 0, size = blogs.size(); i < size; i++) {
 			System.out.println(blogs.get(i).toString());
 		}
+
 	}
 
 }
