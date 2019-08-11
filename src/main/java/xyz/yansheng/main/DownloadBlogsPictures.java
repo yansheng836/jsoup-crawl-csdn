@@ -25,22 +25,6 @@ import xyz.yansheng.utility.StringUtil;
  */
 public class DownloadBlogsPictures {
 
-	// 定义常量字符串
-	/**  
-	 * @Fields PERSONAL_HOME_PAGE : 个人主页网址：personal-home-page，如https://me.csdn.net/username
-	 */
-	public static final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
-
-	/**  
-	 * @Fields BLOG_HOME : 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
-	 */
-	public static final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
-
-	/**  
-	 * @Fields PARENT_PATH : 保存博客图片的根路径
-	 */
-	public static final String PARENT_PATH = "E://2CSDN//";
-
 	/**
 	 * @Title main
 	 * @author yansheng
@@ -50,13 +34,13 @@ public class DownloadBlogsPictures {
 	 */
 	public static void main(String[] args) {
 		// 1.获取博客数量
-		int blogCount = BlogUtil.getBlogCounter(PERSONAL_HOME_PAGE);
+		int blogCount = BlogUtil.getBlogCounter(BlogUtil.PERSONAL_HOME_PAGE);
 
 		// 2.获取博客列表页数
 		int blogListPage = BlogUtil.getBlogListPage(blogCount);
 
 		// 3.获取博客列表
-		ArrayList<Blog> blogs = BlogUtil.getBlogs(blogListPage, BLOG_HOME);
+		ArrayList<Blog> blogs = BlogUtil.getBlogs(blogListPage, BlogUtil.BLOG_HOME);
 
 		ArrayList<String> picUrls = new ArrayList<String>();
 
@@ -70,7 +54,7 @@ public class DownloadBlogsPictures {
 			// 替换文件名中的特殊字符，使能够成功创建该文件夹
 			blogTitle = StringUtil.replaceSpecialCharacters(blogTitle);
 
-			String dirPath = PARENT_PATH + blog.getCreateTime().substring(0, 10) + "-" + blogTitle + "//";
+			String dirPath = BlogUtil.PARENT_PATH + blog.getCreateTime().substring(0, 10) + "-" + blogTitle + "//";
 
 			// 判断创建文件夹的返回值，如果是0，即已存在，则认为已下载该博客的图片，跳出该循环；
 			// 如果是-1，则文件夹创建失败，故路径错误，不可能成功保存图片，也直接跳出循环。
@@ -95,7 +79,7 @@ public class DownloadBlogsPictures {
 		}
 
 		// 结束语
-		System.out.println("\n****已成功下载博主：" + BLOG_HOME + "所有博客中的图片！****");
+		System.out.println("\n****已成功下载博主：" + BlogUtil.BLOG_HOME + "所有博客中的图片！****");
 
 	}
 

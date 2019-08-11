@@ -28,6 +28,22 @@ import xyz.yansheng.entity.Blog;
  */
 public class BlogUtil {
 
+	// 定义常量字符串
+	/**  
+	 * @Fields PERSONAL_HOME_PAGE : 个人主页网址：personal-home-page，如https://me.csdn.net/username
+	 */
+	public static final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
+
+	/**  
+	 * @Fields BLOG_HOME : 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
+	 */
+	public static final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
+
+	/**  
+	 * @Fields PARENT_PATH : 保存博客图片的根路径
+	 */
+	public static final String PARENT_PATH = "E://2CSDN//";
+
 	/**
 	 * @Title getBlogCounter
 	 * @author yansheng
@@ -81,7 +97,8 @@ public class BlogUtil {
 	 * @version v1.1
 	 * @date 2019-08-10 19:05:04
 	 * @Description 返回博客列表
-	 * @param blogCount 博客数量
+	 * @param blogListPage 博客列表页数
+	 * @param blogHome 博客主页网址
 	 * @return   
 	 * ArrayList<Blog> 博客列表
 	 */
@@ -116,10 +133,9 @@ public class BlogUtil {
 			// 注意这里因为class里面有空格，class="article-item-box csdn-tracking-statistics",
 			// 相当于是两个class
 			Elements blogInfo = articleList.select("div.article-item-box.csdn-tracking-statistics");
-			//System.out.println("blogInfo:" + blogInfo);
 
 			for (int j = 0, size = blogInfo.size(); j < size; j++) {
-				// 如果不含blogHome（https://blog.csdn.net/weixin_41287260），则移除
+				// 如果不含blogHome（https://blog.csdn.net/weixin_41287260），则移除(或者直接跳出该重循环)
 				// 排除乱入的第一个网址 :https://blog.csdn.net/yoyo_liyy/article/details/82762601
 				if (j == 0) {
 					// blogInfo.remove(j);
@@ -128,15 +144,12 @@ public class BlogUtil {
 				// 取出博客信息
 				Element h4 = blogInfo.get(j).select("h4>a").first();
 				String blogUrl = h4.attr("href");
-				//System.out.println("blogUrl:" + blogUrl);
 
 				// 裁剪博客标题，前面有：原，空格
 				String blogTitle = h4.text().substring(2);
-				//System.out.println("blogTitle:" + blogTitle);
 
 				Element date = blogInfo.get(j).select("span.date").first();
 				String blogDate = date.text();
-				//System.out.println("blogDate:" + blogDate);
 
 				Blog blog = new Blog();
 				blog.setUrl(blogUrl);

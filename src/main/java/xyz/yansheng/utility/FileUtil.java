@@ -33,7 +33,7 @@ public class FileUtil {
 	 * @version v1.0
 	 * @date 2019-08-10 22:46:14
 	 * @Description 创建文件夹
-	 * @param dirPath
+	 * @param dirPath 文件夹名
 	 * @return   
 	 * int 文件夹存在返回0，文件夹创建成功过返回1，文件夹创建失败过返回-1
 	 */

@@ -23,17 +23,6 @@ import xyz.yansheng.utility.BlogUtil;
  */
 public class GetBlogs {
 
-	// 定义常量字符串
-	/**  
-	 * @Fields PERSONAL_HOME_PAGE : 个人主页网址：personal-home-page，如https://me.csdn.net/username
-	 */
-	public static final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
-
-	/**  
-	 * @Fields BLOG_HOME : 个人博客主页：personal-blog-page，如https://blog.csdn.net/username
-	 */
-	public static final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
-
 	/**
 	 * @Title main
 	 * @author yansheng
@@ -44,13 +33,13 @@ public class GetBlogs {
 	public static void main(String[] args) {
 
 		// 1.获取博客数量
-		int blogCount = BlogUtil.getBlogCounter(PERSONAL_HOME_PAGE);
+		int blogCount = BlogUtil.getBlogCounter(BlogUtil.PERSONAL_HOME_PAGE);
 
 		// 2.获取博客列表页数
 		int blogListPage = BlogUtil.getBlogListPage(blogCount);
 
 		// 3.获取博客列表
-		ArrayList<Blog> blogs = BlogUtil.getBlogs(blogListPage, BLOG_HOME);
+		ArrayList<Blog> blogs = BlogUtil.getBlogs(blogListPage, BlogUtil.BLOG_HOME);
 		for (int i = 0, size = blogs.size(); i < size; i++) {
 			System.out.println(blogs.get(i).toString());
 		}

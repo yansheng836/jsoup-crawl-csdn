@@ -1,5 +1,5 @@
 /**
- * @Title GetBlogConut.java
+ * @Title GetBlogCount.java
  * @Package xyz.yansheng.main
  * @Description TODO
  * @author yansheng
@@ -18,7 +18,7 @@ import xyz.yansheng.utility.BlogUtil;
  * @date 2019-08-10 21:14:42
  * @version v1.0 
  */
-public class GetBlogConut {
+public class GetBlogCount {
 
 	/**
 	 * @Title main
@@ -28,10 +28,8 @@ public class GetBlogConut {
 	 * @Description 1.获取博客数量
 	 */
 	public static void main(String[] args) {
-		// 个人主页网址：personal-home-page，如https://me.csdn.net/username
-		final String PERSONAL_HOME_PAGE = "https://me.csdn.net/weixin_41287260";
-	
-		int blogCount = BlogUtil.getBlogCounter(PERSONAL_HOME_PAGE);
+		
+		int blogCount = BlogUtil.getBlogCounter(BlogUtil.PERSONAL_HOME_PAGE);
 		System.out.println("blogCount:" + blogCount);
 
 	}
