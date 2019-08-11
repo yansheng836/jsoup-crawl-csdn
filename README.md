@@ -24,7 +24,6 @@ Blog [url=https://blog.csdn.net/weixin_41287260/article/details/92185040, create
 5. 下载博客的所有图片，进行备份，防止博客中的图片丢失。
 
 
-
 ## 构建环境
 
 jdk1.8+，maven3.0+，myeclipse2017
@@ -38,7 +37,7 @@ jdk1.8+，maven3.0+，myeclipse2017
 		</dependency>
 ```
 
-注：如果不使用maven框架进行构建，可以到 <https://mvnrepository.com/artifact/org.jsoup/jsoup> 下载jar包，然后加到类路径中。
+注：如果不使用maven框架进行构建，直接下载项目中的`jsoup-1.12.1.jar`或者到 <https://mvnrepository.com/artifact/org.jsoup/jsoup> 下载jar包，然后加到类路径中。
 
 
 
@@ -54,8 +53,6 @@ jdk1.8+，maven3.0+，myeclipse2017
 
 
 
-
-
 ## 已修复bug
 
 1. 如果穿件文件夹失败，直接continue，不再继续下载图片，因为保存路径错误，不可能保存成功，故继续执行没有意义！
@@ -64,6 +61,12 @@ jdk1.8+，maven3.0+，myeclipse2017
 
 `windows下文件名中不能含有：\ / : * ? " < > | 英文的这些字符 ，这里使用"."、"'"进行替换。`
 
-3.  对图片的超链接进行裁剪，之前是裁剪第一个问号前面的字符串subString（0，第一个问号），像这样：https://img-blog.csdnimg.cn/20190729002407657.png?x-oss-process=image/watermark；后面发现有些网址有两个问号，就像这样：https://ss.csdn.net/p?http://s1.51cto.com/images/20180513/1526178919312040.jpg?x-oss-process=image/watermark，现在改成裁剪最后一个问号前面的网址，需要裁剪两次：subString（0，最后一个问号），subString（最后一个问号，字符串长度）；
+3. 对特殊的图片的超链接进行裁剪（如链接中含有一个'?'，或者多个'?'）。
 
 4. 对于图片名太长的字符串进行裁剪，保留其后面的17位（不包含后缀名）；对没有后缀名的图片，为其添加".jpg"后缀，注意这里并没有改变图片格式，仅仅是简单的重命名。打个比方：如果原图片是动图，你修改文件名为jpg后，它还是动图。
+
+
+
+### 声明
+
+- 本项目仅用于学习交流使用，**禁止**进行商业目的的开发、发布、运营等。数据所有权归<http://www.csdn.net/>所有。
