@@ -8,6 +8,7 @@
  */
 package xyz.yansheng.main;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import xyz.yansheng.entity.Blog;
@@ -44,7 +45,7 @@ public class DownloadBlogsPictures {
 	/**
 	 * @Title main
 	 * @author yansheng
-	 * @version v1.1
+	 * @version v1.2
 	 * @date 2019-08-11 02:05:34
 	 * @Description 备份博客的图片
 	 */
@@ -59,8 +60,21 @@ public class DownloadBlogsPictures {
 		ArrayList<Blog> blogs = BlogUtil.getBlogs(blogListPage, BLOG_HOME);
 
 		ArrayList<String> picUrls = new ArrayList<String>();
+		
+		// 首先保证保存图片的父目录是存在的，如果不存在就创建
+		File parentPath = new File(PARENT_PATH);
+		if (!parentPath.exists()) {
+			if (parentPath.mkdirs()) {
+				System.out.println("创建保存图片的跟目录：'" + parentPath + "' 成功。");
+			} else {
+				System.err.println("创建保存图片的跟目录：'" + parentPath + "' 失败。");
+				return;
+			}
+		} else {
+			System.out.println("保存图片的跟目录：'" + parentPath + "' 已存在。");
+		}
 
-		// 这里仅仅是为了测试，所以控制循环变量，只下载这篇博客的图片
+		// 下载所有博客的图片
 		for (int i = 0, blogNo = blogs.size(); i < blogNo; i++) {
 			Blog blog = blogs.get(i);
 			System.out.print("第" + Integer.toString(i + 1) + "篇博客-图片");
