@@ -83,6 +83,11 @@ public class FileUtil {
 
 		String outPicPath = dirPath + picName;
 		File outFile = new File(outPicPath);
+		// 如果图片已存在，则直接跳过下载该图片，因为没有必要再下载一次
+		if (outFile.exists()) {
+			System.out.println("-图片：" + outPicPath + " 已存在，故不再下载。");
+			return ;
+		}
 
 		// 创建URL对象，将字符串解析为URL
 		URL url = null;

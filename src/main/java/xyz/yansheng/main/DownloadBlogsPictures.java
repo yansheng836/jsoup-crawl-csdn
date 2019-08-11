@@ -8,6 +8,7 @@
  */
 package xyz.yansheng.main;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import xyz.yansheng.entity.Blog;
@@ -28,7 +29,7 @@ public class DownloadBlogsPictures {
 	/**
 	 * @Title main
 	 * @author yansheng
-	 * @version v1.1
+	 * @version v1.2
 	 * @date 2019-08-11 02:05:34
 	 * @Description 备份博客的图片
 	 */
@@ -44,6 +45,19 @@ public class DownloadBlogsPictures {
 
 		ArrayList<String> picUrls = new ArrayList<String>();
 
+		// 首先保证保存图片的父目录是存在的，如果不存在就创建
+		File parentPath = new File(BlogUtil.PARENT_PATH);
+		if (!parentPath.exists()) {
+			if (parentPath.mkdirs()) {
+				System.out.println("创建保存图片的跟目录：" + parentPath + " 成功。");
+			}else {
+				System.err.println("创建保存图片的跟目录：" + parentPath + " 失败。");
+				return ;
+			}
+		} else {
+			System.out.println("保存图片的跟目录：" + parentPath + " 已存在。");
+		}
+
 		// 这里仅仅是为了测试，所以控制循环变量，只下载这篇博客的图片
 		for (int i = 0, blogNo = blogs.size(); i < blogNo; i++) {
 			Blog blog = blogs.get(i);
@@ -54,13 +68,14 @@ public class DownloadBlogsPictures {
 			// 替换文件名中的特殊字符，使能够成功创建该文件夹
 			blogTitle = StringUtil.replaceSpecialCharacters(blogTitle);
 
-			String dirPath = BlogUtil.PARENT_PATH + blog.getCreateTime().substring(0, 10) + "-" + blogTitle + "//";
+			String dirPath = BlogUtil.PARENT_PATH + blog.getCreateTime().substring(0, 10) + "-" + blogTitle
+					+ "//";
 
 			// 判断创建文件夹的返回值，如果是0，即已存在，则认为已下载该博客的图片，跳出该循环；
 			// 如果是-1，则文件夹创建失败，故路径错误，不可能成功保存图片，也直接跳出循环。
 			int result = FileUtil.mkdir(dirPath);
 			if (result == 0 || result == -1) {
-				continue;
+				// continue;
 			}
 
 			// 获取该博客的所有图片的url列表
