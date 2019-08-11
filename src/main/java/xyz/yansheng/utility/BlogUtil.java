@@ -164,7 +164,7 @@ public class BlogUtil {
 	public static ArrayList<String> getBlogPictures(String blogUrl) {
 
 		ArrayList<String> picUrls = new ArrayList<String>();
-		
+
 		// 1. 获取文档对象
 		Document doc = null;
 		try {
@@ -172,23 +172,16 @@ public class BlogUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		System.out.println(doc);
 
 		// 2. 查找包含博客列表的元素
-		Elements articleList = doc.select("img.has");
-		// System.out.println("articleList:" + articleList);
-		for (Element element : articleList) {
-			String picUrl1 = element.attr("src");
+		Elements images = doc.select("img.has");
+		for (Element element : images) {
+			String picUrl = element.attr("src");
 			// 对特殊字符串（如下）进行裁剪
-			// https://img-blog.csdnimg.cn/20190729002407657.png?x-oss-process=image/watermark,
-
-			int index = picUrl1.indexOf('?');
-			if (index != -1) {
-				picUrl1 = picUrl1.substring(0,index);
-			}
-			picUrls.add(picUrl1);
+			picUrl = StringUtil.subPicUrl(picUrl);
+			picUrls.add(picUrl);
 		}
-		
+
 		return picUrls;
 	}
 

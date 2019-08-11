@@ -60,7 +60,7 @@ public class FileUtil {
 	/**
 	 * @Title downloadPic
 	 * @author yansheng
-	 * @version v1.1
+	 * @version v1.2
 	 * @date 2019-08-11 00:54:26
 	 * @Description 下载图片
 	 * @param picUrl 图片链接
@@ -68,12 +68,20 @@ public class FileUtil {
 	 */
 	public static void downloadPic(String picUrl, String dirPath) {
 
-		// 构造输出文件名（图片名）：路径+链接中的图片名
-		// 对图片名进行裁剪：取得最后一个/后面的内容
-		// http://patiencecats.com/ueditor/php/upload/image/20180312/1520829763554937.jpg
+		/*构造输出文件名（图片名）：路径+链接中的图片名,对图片名进行裁剪：取得最后一个/后面的内容
+		 * http://patiencecats.com/ueditor/php/upload/image/20180312/1520829763554937.jpg
+		 * 1520829763554937.jpg
+		 * 
+		 * 如果该文件名不包含后缀，直接在后面加上".jpg"
+		 */
 		int index = picUrl.lastIndexOf('/');
+		// 取得图片文件名
+		String picName = picUrl.substring(index + 1, picUrl.length());
 
-		String outPicPath = dirPath + picUrl.substring(index + 1, picUrl.length());
+		// 对图片文件名进行处理
+		picName = StringUtil.checkPicName(picName);
+
+		String outPicPath = dirPath + picName;
 		File outFile = new File(outPicPath);
 
 		// 创建URL对象，将字符串解析为URL
@@ -89,10 +97,11 @@ public class FileUtil {
 			con.connect();
 			//得到响应码
 			int responseCode = con.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_OK) {
+			// 这里假设只要不是4xx（请求错误）,5xx（服务器错误）都表示可以下载图片
+			if (responseCode < 400) {
 				// 响应成功，可以建立连接
 			} else {
-				System.err.println("图片链接(" + picUrl + ")无效！");
+				System.err.println("图片链接(" + picUrl + ")无效！响应状态码为："+ responseCode);
 				return;
 			}
 		} catch (MalformedURLException e2) {
@@ -117,7 +126,5 @@ public class FileUtil {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 }

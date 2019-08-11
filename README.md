@@ -51,31 +51,17 @@ jdk1.8+，maven3.0+，myeclipse2017
 
 
 
-## 待修复bug
-
-1. 当标题中含有`/`时，创建文件夹会失败，比如：`2019-05-26-java.lang.NoClassDefFoundError: org/junit/platform/launcher/core/LauncherFactory`
-
-同时，如果穿件文件夹失败，应该continue，不再继续下载图片，因为路径错误，会没有意义！
-
-2. 创建`2019-07-25-git 错误 fatal: Not a valid object name: 'master'.//失败`
-3. 2019-05-04-git报错“fatal: refusing to merge unrelated histories”处理方案//失败
-4. 2019-01-06-手把手教你如何安装Pycharm——靠谱的Pycharm安装详细教程//成功
-
- --下载图片:https://ss.csdn.net/p 成功！保存位置为：E://2CSDN//2019-01-06-手把手教你如何安装Pycharm——靠谱的Pycharm安装详细教程//p
- --下载图片:https://ss.csdn.net/p 成功！保存位置为：E://2CSDN//2019-01-06-手把手教你如何安装Pycharm——靠谱的Pycharm安装详细教程//p
- --下载图片:https://ss.csdn.net/p 成功！保存位置为：E://2CSDN//2019-01-06-手把手教你如何安装Pycharm——靠谱的Pycharm安装详细教程//p
-
-<https://ss.csdn.net/p?http://s1.51cto.com/images/20180513/1526178919312040.jpg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=>
-尝试：当超链接有两个问号时取第二个分号内容
 
 
-5. 第88篇博客-图片创建文件夹：E://2CSDN//2018-12-01-解决Eclipse和myeclipse在进行 html,jsp等 页面编辑时，自动格式化变丑的问题//成功
-图片链接(http://images.cnitblog.com/blog/534652/201501/111641302036764.png)无效！
 
-6. 第53篇博客-图片	at java.io.FileOutputStream.open0(Native Method)
-   	at java.io.FileOutputStream.open(FileOutputStream.java:270)
-   	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
-   	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
-   	at xyz.yansheng.utility.FileUtil.downloadPic(FileUtil.java:108)
-   	at xyz.yansheng.main.DownloadBlogsPictures.main(DownloadBlogsPictures.java:82)
-   文件夹：E://2CSDN//2019-04-06-myeclipse版本简单介绍//已存在
+## 已修复bug
+
+1. 如果穿件文件夹失败，直接continue，不再继续下载图片，因为保存路径错误，不可能保存成功，故继续执行没有意义！
+
+2. 替换文件名字符串中的特殊字符，使其能够成功创建文件夹：
+
+`windows下文件名中不能含有：\ / : * ? " < > | 英文的这些字符 ，这里使用"."、"'"进行替换。`
+
+3.  对图片的超链接进行裁剪，之前是裁剪第一个问号前面的字符串subString（0，第一个问号），像这样：https://img-blog.csdnimg.cn/20190729002407657.png?x-oss-process=image/watermark；后面发现有些网址有两个问号，就像这样：https://ss.csdn.net/p?http://s1.51cto.com/images/20180513/1526178919312040.jpg?x-oss-process=image/watermark，现在改成裁剪最后一个问号前面的网址，需要裁剪两次：subString（0，最后一个问号），subString（最后一个问号，字符串长度）；
+
+4. 对于图片名太长的字符串进行裁剪，保留其后面的17位（不包含后缀名）；对没有后缀名的图片，为其添加".jpg"后缀，注意这里并没有改变图片格式，仅仅是简单的重命名。打个比方：如果原图片是动图，你修改文件名为jpg后，它还是动图。
