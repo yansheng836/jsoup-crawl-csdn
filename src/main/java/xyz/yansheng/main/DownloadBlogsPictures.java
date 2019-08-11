@@ -37,9 +37,9 @@ public class DownloadBlogsPictures {
 	public static final String BLOG_HOME = "https://blog.csdn.net/weixin_41287260";
 
 	/**  
-	 * @Fields PARENT_PATH : 保存博客图片的根路径
+	 * @Fields PARENT_PATH : 保存博客图片的根路径，保存在前文件夹
 	 */
-	public static final String PARENT_PATH = "E://2CSDN//";
+	public static final String PARENT_PATH = "CSDN博客图片备份//";
 
 	/**
 	 * @Title main
@@ -76,7 +76,7 @@ public class DownloadBlogsPictures {
 			// 如果是-1，则文件夹创建失败，故路径错误，不可能成功保存图片，也直接跳出循环。
 			int result = FileUtil.mkdir(dirPath);
 			if (result == 0 || result == -1) {
-				continue;
+				// continue;
 			}
 
 			// 获取该博客的所有图片的url列表
@@ -88,7 +88,7 @@ public class DownloadBlogsPictures {
 				// 暂时注释，用于测试图片保存的文件名
 				FileUtil.downloadPic(picUrl, dirPath);
 				if (j == picNo - 1) {
-					System.out.println(" -已下载" + picNo + "张图片\n");
+					System.out.println("  -已下载" + picNo + "张图片\n");
 				}
 				// System.out.println("图片文件名：" + picUrl);
 			}
