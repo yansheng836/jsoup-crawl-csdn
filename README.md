@@ -1,6 +1,6 @@
 # jsoup-crawl-csdn
 
-用jsoup爬取csdn博客的一些信息。
+用 [jsoup](https://github.com/jhy/jsoup) 爬取csdn博客的一些信息。
 
 
 ## 初衷
