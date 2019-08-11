@@ -47,7 +47,9 @@ public class StringUtil {
 		int index1 = picUrl.lastIndexOf('?');
 		if (index1 != -1) {
 			// 如果包含，先判断是否是特殊情况
-			if (picUrl.contains("ss.csdn.net")) {
+			// 定义csdn图床
+			String csdnImg = "ss.csdn.net";
+			if (picUrl.contains(csdnImg)) {
 				String[] strings = picUrl.split("\\?", 5);
 				picUrl = strings[1];
 			} else {
@@ -111,10 +113,12 @@ public class StringUtil {
 		 * 
 		 */
 		// 如果文件名不包含扩展名，为其添加扩展名
-		if (!picName.contains(".")) {
+		String dotString = ".";
+		int picNameLength = 17;
+		if (!picName.contains(dotString)) {
 			int length = picName.length();
-			if (length > 17) {
-				picName = picName.substring(length-17);
+			if (length > picNameLength) {
+				picName = picName.substring(length - picNameLength);
 			}
 			picName = picName + suffix;
 		}

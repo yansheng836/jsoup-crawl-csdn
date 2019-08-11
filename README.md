@@ -24,7 +24,9 @@ Blog [url=https://blog.csdn.net/weixin_41287260/article/details/92185040, create
 5. 下载博客的所有图片，进行备份，防止博客中的图片丢失。
 
 
+
 ## 构建环境
+
 jdk1.8+，maven3.0+，myeclipse2017
 
 ```maven

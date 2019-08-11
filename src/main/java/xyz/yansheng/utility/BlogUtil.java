@@ -89,7 +89,7 @@ public class BlogUtil {
 
 		// 拼接博客列表页网址 
 		// 如列表第二页为：https://blog.csdn.net/weixin_41287260/article/list/2
-		final String ARTICLE_LIST = "/article/list/";
+		final String articleListString = "/article/list/";
 
 		// 用于存放博客列表，设置初始容量为：页面*20
 		ArrayList<Blog> blogs = new ArrayList<Blog>(blogListPage * 20);
@@ -98,7 +98,7 @@ public class BlogUtil {
 		String blogListUrl = null;
 		for (int i = 1, pageNum = blogListPage + 1; i < pageNum; i++) {
 			// 拼接网址
-			blogListUrl = blogHome + ARTICLE_LIST + Integer.toString(i);
+			blogListUrl = blogHome + articleListString + Integer.toString(i);
 
 			// 1. 获取文档对象
 			Document doc = null;
@@ -111,7 +111,6 @@ public class BlogUtil {
 
 			// 2. 查找包含博客列表的元素
 			Element articleList = doc.select("div.article-list").first();
-			// System.out.println("articleList:" + articleList);
 
 			// 3. 查找每篇博客的元素
 			// 注意这里因为class里面有空格，class="article-item-box csdn-tracking-statistics",
