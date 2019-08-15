@@ -41,10 +41,12 @@ Blog [url=https://blog.csdn.net/weixin_41287260/article/details/92185040, create
 
 csdn的编辑器有两种富文本编辑器和markdown编辑器，而这种编辑器生成的文章的HTML标签是不同的，至少图片的标签是不同的，如下所示：
 
-类型 | 文章标识 |图片标签|选择器
-- |-|-|-
-富文本| `<div id="content_views" class="htmledit_views" >`|`<img class="has">`|`select("img.has")`
-markdown| `<div id="content_views" class="markdown_views prism-kimbie-light">`|`<img>`|`select("img")`
+
+| 类型     | 文章标识 | 图片标签 | 选择器 |
+| -------- | -------- | -------- | ------ |
+| 富文本   |    `<div id="content_views" class="htmledit_views" >`      |      `<img class="has">`    |    `select("img.has")`    |
+| markdown |     `<div id="content_views" class="markdown_views prism-kimbie-light">`     |    `<img>`      |   `select("img")`     |
+
 
 所以在查找博客中的图片时，使用的选择器会有所不同，具体可参考我的博客：<https://blog.csdn.net/weixin_41287260/article/details/99237875>
 
