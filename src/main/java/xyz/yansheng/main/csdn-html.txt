@@ -1,0 +1,22 @@
+/*
+         * 富文本写的博客：https://blog.csdn.net/weixin_41287260/article/details/92185040
+         * markdown写的博客：https://blog.csdn.net/weixin_41287260/article/details/99354076
+
+
+<!-- 富文本写的博客 -->
+<article class="baidu_pl">
+        <!-- 文章内容标签 -->
+         <div id="article_content" class="article_content clearfix">
+          ……
+          <!-- 富文本写的博客，注意不同之处在这里，类不同 -->
+          <div id="content_views" class="htmledit_views" >
+         ……文章具体内容
+
+<!-- markdown写的博客 -->
+<article class="baidu_pl">
+        <!-- 文章内容标签 -->
+         <div id="article_content" class="article_content clearfix">
+          ……
+          <!-- markdown写的博客，注意不同之处在这里 -->
+          <div id="content_views" class="markdown_views prism-kimbie-light">
+         ……文章具体内容

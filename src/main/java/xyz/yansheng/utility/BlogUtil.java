@@ -153,7 +153,7 @@ public class BlogUtil {
 	/**
 	 * @Title getBlogPictures
 	 * @author yansheng
-	 * @version v1.0
+	 * @version v1.1
 	 * @date 2019-08-10 22:22:34
 	 * @Description 获取博客中的图片的链接
 	 * @param blogUrl 博客的网址
@@ -172,8 +172,29 @@ public class BlogUtil {
 			e.printStackTrace();
 		}
 
-		// 2. 查找包含博客列表的元素
-		Elements images = doc.select("img.has");
+		/*2. 先判断该文章是用富文本写的，还是用markdown写的，因为他们的图片的标签有些差别
+		 * <article class="baidu_pl">
+		 * 	 <!-- 富文本写的博客，注意不同之处在这里，类不同 -->
+		 * 	<div id="content_views" class="htmledit_views" >
+		 * 
+		 * 	<!-- markdown写的博客，注意不同之处在这里 -->
+		 * 	<div id="content_views" class="markdown_views prism-kimbie-light">
+		 * 
+		 */
+		Element article = doc.selectFirst("article.baidu_pl");
+		Element contentViews = article.selectFirst("div#content_views");
+		String contentViewsClass = contentViews.attr("class");
+		
+		// 进行判断：如果类包含htmledit_views，说明是富文本编辑器写的；否则是markdown写的
+		// 3.查找该篇博客中的所有图片
+		String htmleditViews = "htmledit_views";
+		Elements images = null;
+		if (contentViewsClass.contains(htmleditViews)) {
+			images = article.select("img.has");
+		}else {
+			images = article.select("img");
+		}
+
 		for (Element element : images) {
 			String picUrl = element.attr("src");
 			// 对特殊字符串（如下）进行裁剪
