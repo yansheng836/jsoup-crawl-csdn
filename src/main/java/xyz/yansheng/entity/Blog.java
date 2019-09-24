@@ -1,20 +1,9 @@
-/**
- * @Title Blog.java
- * @Package xyz.yansheng.entity
- * @Description TODO
- * @author yansheng
- * @date 2019-08-10 18:34:35
- * @version v1.0
- */
 package xyz.yansheng.entity;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Company: </p>
+ * 博客实体类
  * @author yansheng
- * @date 2019-08-10 18:34:35
- * @version v1.0 
+ * @date 2019/08/10
  */
 public class Blog {
 

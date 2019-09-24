@@ -1,29 +1,13 @@
-/**
- * @Title StringUtilTest.java
- * @Package xyz.yansheng.utility
- * @Description TODO
- * @author yansheng
- * @date 2019-08-11 14:28:59
- * @version v1.0
- */
 package xyz.yansheng.utility;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Company: </p>
  * @author yansheng
- * @date 2019-08-11 14:28:59
- * @version v1.0 
+ * @date 2019/08/11
  */
 public class StringUtilTest {
 
 	/**
-	 * @Title main
-	 * @author yansheng
-	 * @version v1.0
-	 * @date 2019-08-11 14:28:59
-	 * @Description 测试StringUtil的方法
+	 * 测试StringUtil的方法
 	 */
 	public static void main(String[] args) {
 

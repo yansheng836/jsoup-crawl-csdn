@@ -1,11 +1,3 @@
-/**
- * @Title DownloadBlogsPictures.java
- * @Package xyz.yansheng.main
- * @Description TODO
- * @author yansheng
- * @date 2019-08-11 02:05:34
- * @version v1.0
- */
 package xyz.yansheng.main;
 
 import java.io.File;
@@ -17,21 +9,13 @@ import xyz.yansheng.utility.FileUtil;
 import xyz.yansheng.utility.StringUtil;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Company: </p>
  * @author yansheng
- * @date 2019-08-11 02:05:34
- * @version v1.0 
+ * @date 2019/08/11
  */
 public class DownloadBlogsPictures {
 
 	/**
-	 * @Title main
-	 * @author yansheng
-	 * @version v1.2
-	 * @date 2019-08-11 02:05:34
-	 * @Description 备份博客的图片
+	 * 备份博客的图片
 	 */
 	public static void main(String[] args) {
 		// 1.获取博客数量

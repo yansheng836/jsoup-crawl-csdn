@@ -1,29 +1,13 @@
-/**
- * @Title FileUtilTest.java
- * @Package xyz.yansheng.utility
- * @Description TODO
- * @author yansheng
- * @date 2019-08-10 22:49:48
- * @version v1.0
- */
 package xyz.yansheng.utility;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Company: </p>
  * @author yansheng
- * @date 2019-08-10 22:49:48
- * @version v1.0 
+ * @date 2019/08/10
  */
 public class FileUtilTest {
 
 	/**
-	 * @Title main
-	 * @author yansheng
-	 * @version v1.0
-	 * @date 2019-08-10 22:49:48
-	 * @Description 测试工具类FileUtil
+	 * 测试工具类FileUtil
 	 */
 	public static void main(String[] args) {
 
